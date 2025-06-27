@@ -2,243 +2,1123 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BusinessMate Solution</title>
-    <link href="./favicon.ico" rel="shortcut icon" type="image/x-icon" />
-    <link rel="stylesheet" href="content/css/style.css">
-    <link rel="stylesheet" href="content/css/all.min.css">
-    <script src="content/js/jquery.min.js"></script>
-
-
-    <link rel="icon" href="./images/image.png">
-    <link rel="stylesheet" href="content/css/bootstrap.min.css">
-    <link rel="stylesheet" href="content/css/ionicons.min.css">
-
-    <!--<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">-->
-
-
-
-    <link rel="stylesheet" href="content/css/font-awesome.min.css" crossorigin="anonymous">
-    <link href="content/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="content/ionicons/css/ionicons.min.css" rel="stylesheet">
-    <link href="content/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-    <link href="content/lightbox/css/lightbox.min.css" rel="stylesheet">
-    <script src="content/js/main.js"></script>
+    <title>BusinessMateSolution | CCTV Security Systems</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-blue: #1a56db;
+            --dark-blue: #0e2a5a;
+            --light-blue: #dbeafe;
+            --primary-green: #10b981;
+            --dark-green: #047857;
+            --light-green: #d1fae5;
+            --light-gray: #f3f4f6;
+            --dark-gray: #4b5563;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f9fafb;
+            color: #1f2937;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--dark-blue), var(--primary-blue));
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo-icon {
+            background: var(--primary-green);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+        
+        .logo-text {
+            color: white;
+            font-size: 24px;
+            font-weight: 700;
+        }
+        
+        .logo-text span {
+            color: var(--primary-green);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+        
+        nav a {
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            padding: 8px 0;
+            position: relative;
+        }
+        
+        nav a:hover, nav a.active {
+            color: white;
+        }
+        
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: var(--primary-green);
+            transition: width 0.3s ease;
+        }
+        
+        nav a:hover::after, nav a.active::after {
+            width: 100%;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(14, 42, 90, 0.85), rgba(14, 42, 90, 0.9)), url('https://images.unsplash.com/photo-1592417817098-8fd3d9eb14a5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            min-height: 85vh;
+            display: flex;
+            align-items: center;
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: var(--primary-green);
+            color: white;
+            padding: 14px 32px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        
+        .btn:hover {
+            background: var(--dark-green);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid white;
+            margin-left: 15px;
+        }
+        
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Page Content */
+        .page {
+            display: none;
+            padding: 80px 0;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .page.active {
+            display: block;
+        }
+        
+        .section-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 60px;
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            color: var(--dark-blue);
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--primary-green);
+            border-radius: 2px;
+        }
+        
+        .section-subtitle {
+            color: var(--dark-gray);
+            font-size: 1.1rem;
+        }
+        
+        /* About Page */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+        
+        .about-img {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            height: 400px;
+            background: linear-gradient(45deg, var(--primary-blue), var(--primary-green));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+        }
+        
+        .about-text h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: var(--dark-blue);
+        }
+        
+        .about-text p {
+            margin-bottom: 20px;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .feature-card {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            border-top: 4px solid var(--primary-blue);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .feature-icon {
+            width: 70px;
+            height: 70px;
+            background: var(--light-blue);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            color: var(--primary-blue);
+            font-size: 28px;
+        }
+        
+        .feature-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: var(--dark-blue);
+        }
+        
+        /* Products Page */
+        .products {
+            background: var(--light-gray);
+        }
+        
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        
+        .product-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            border: 1px solid #e5e7eb;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .product-img {
+            height: 200px;
+            background: linear-gradient(45deg, var(--primary-blue), var(--primary-green));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+        }
+        
+        .product-content {
+            padding: 25px;
+        }
+        
+        .product-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+            color: var(--dark-blue);
+        }
+        
+        .product-features {
+            list-style: none;
+            margin: 15px 0 20px;
+        }
+        
+        .product-features li {
+            padding: 8px 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .product-features li::before {
+            content: '\f00c';
+            font-family: 'Font Awesome 5 Free';
+            font-weight: 900;
+            color: var(--primary-green);
+        }
+        
+        .product-price {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-blue);
+            margin: 15px 0;
+        }
+        
+        /* Packages Page */
+        .packages {
+            background: linear-gradient(to bottom, var(--light-blue), white);
+        }
+        
+        .packages-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .package-card {
+            background: white;
+            border-radius: 10px;
+            padding: 40px 30px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .package-card.popular {
+            border: 2px solid var(--primary-green);
+            transform: scale(1.05);
+        }
+        
+        .popular-tag {
+            position: absolute;
+            top: 20px;
+            right: -30px;
+            background: var(--primary-green);
+            color: white;
+            padding: 8px 40px;
+            transform: rotate(45deg);
+            font-weight: 600;
+            font-size: 14px;
+        }
+        
+        .package-card h3 {
+            font-size: 1.8rem;
+            color: var(--dark-blue);
+            margin-bottom: 15px;
+        }
+        
+        .package-price {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-blue);
+            margin: 20px 0;
+        }
+        
+        .package-price span {
+            font-size: 1rem;
+            color: var(--dark-gray);
+        }
+        
+        .package-features {
+            list-style: none;
+            margin: 25px 0;
+        }
+        
+        .package-features li {
+            padding: 12px 0;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        
+        /* Contact Page */
+        .contact {
+            background: linear-gradient(to bottom, var(--light-green), white);
+        }
+        
+        .contact-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 50px;
+        }
+        
+        .contact-info h3 {
+            font-size: 1.8rem;
+            margin-bottom: 25px;
+            position: relative;
+            display: inline-block;
+            color: var(--dark-blue);
+        }
+        
+        .contact-info h3::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: var(--primary-green);
+        }
+        
+        .contact-details {
+            margin: 30px 0;
+        }
+        
+        .contact-item {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 25px;
+            align-items: flex-start;
+        }
+        
+        .contact-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--light-blue);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-blue);
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+        
+        .contact-form .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--dark-blue);
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 14px;
+            border-radius: 4px;
+            border: 1px solid #d1d5db;
+            background: white;
+            color: var(--dark-gray);
+            font-size: 16px;
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 0 3px rgba(26, 86, 219, 0.1);
+        }
+        
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, var(--dark-blue), var(--primary-blue));
+            color: white;
+            padding: 60px 0 30px;
+        }
+        
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-col h4 {
+            font-size: 1.3rem;
+            margin-bottom: 25px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .footer-col h4::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background: var(--primary-green);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 15px;
+        }
+        
+        .footer-links a {
+            color: #cbd5e1;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: var(--primary-green);
+            padding-left: 5px;
+        }
+        
+        .footer-social {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-link {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 18px;
+            transition: all 0.3s ease;
+        }
+        
+        .social-link:hover {
+            background: var(--primary-green);
+            transform: translateY(-5px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #cbd5e1;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            nav {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 80px);
+                background: var(--dark-blue);
+                transition: all 0.4s ease;
+                padding: 40px 0;
+            }
+            
+            nav.active {
+                left: 0;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+                gap: 30px;
+            }
+            
+            .hero h1 {
+                font-size: 2.4rem;
+            }
+            
+            .btn {
+                display: block;
+                text-align: center;
+                margin-bottom: 15px;
+                width: 100%;
+            }
+            
+            .btn-secondary {
+                margin-left: 0;
+            }
+            
+            .package-card.popular {
+                transform: scale(1);
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .hero {
+                min-height: auto;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .page {
+                padding: 60px 0;
+            }
+        }
+        
+        /* Animation */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
 </head>
 <body>
-    <header class="header">
-        <a href="#" class="logo"><img src="./images/logo.png" alt="" style="border-radius: 25px; background-color: white; padding: 20px; width: 200px; height: 150px;"></a>
-        <div class="fas fa-bars"></div>
-        <nav class="navbar">
-            <ul>
-                <li><a href="#home">হোম</a></li>
-                <li><a href="#service">সরকারি চাকরি</a></li>
-                <li><a href="#portfolio">বেসরকারি চাকরি</a></li>
-                <li><a href="#team">বিদেশী চাকরি</a></li>
-                <li><a href="#contact">যোগাযোগ</a></li>
-
-            </ul>
-        </nav>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <div class="logo-text">Business<span>MateSolution</span></div>
+            </div>
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+            <nav>
+                <ul>
+                    <li><a href="#" class="nav-link active" data-page="home"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="#" class="nav-link" data-page="about"><i class="fas fa-info-circle"></i> About</a></li>
+                    <li><a href="#" class="nav-link" data-page="products"><i class="fas fa-camera"></i> Products</a></li>
+                    <li><a href="#" class="nav-link" data-page="packages"><i class="fas fa-box"></i> Packages</a></li>
+                    <li><a href="#" class="nav-link" data-page="contact"><i class="fas fa-envelope"></i> Contact</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
 
-    <section id="home" class="home">
-        <h1>
-            আপনার পছন্দের চাকরি বেছে নিন।
-
-        </h1>
-        <h2>  বিজনেসমেট  সলিউশনের সাথে </h2>
-        <div class="wave wave1"></div>
-        <div class="wave wave2"></div>
-        <div class="wave wave3"></div>
-    </section>
-
-
-
-    <div class="pt-5 pb-5" style="background-color: #f2f2f2;">
+    <!-- Hero Section -->
+    <section class="hero" id="home-page">
         <div class="container">
-            <div class="row">
-                <div class="section-head col-sm-12" id="service">
-                    <h1>সরকারি চাকরি</h1>
-                    <p>
-                        বাংলাদেশের সরকারি প্রতিষ্ঠানের যে সকল নিয়োগ বিজ্ঞপ্তি গুলা হয়ে থাকে সেগুলো আমরা সংগ্রহ করে আমাদের এখানে দেওয়ার চেষ্টা করি যাতে করে সরকারি চাকরির অনেকগুলা খবর একসাথে পাওয়া যায়।
-                    </p>
-                </div>
-                <div class="col-lg-4 col-sm-6">
-                    <div class="item">
-                        <span class="icon feature_box_col_one"><i class="fa fa-laptop"></i></span>
-                        <h6>Web App Development</h6>
-                        <p>Our Custom Web Development Services Include Both Front-End And Back-End Development. Whether It Is Enhancing An Existing App Or Architecting An Enterprise App, Our Developers Are Up For The Challenge.</p>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-sm-6">
-                    <div class="item">
-                        <span class="icon feature_box_col_two"><i class="fa fa-android"></i></span>
-                        <h6>Mobile App Development</h6>
-                        <p>We Have Expertise In Creating Multi-Platform Mobile App Solutions For Both Android And IOS Devices. Using PhoneGap, Xamarin, And React Native, We Offer Custom Mobile App That Runs Smoothly On Multiple Platforms.</p>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-sm-6">
-                    <div class="item">
-                        <span class="icon feature_box_col_three"><i class="fa fa-magic"></i></span>
-                        <h6>Digital Marketing</h6>
-                        <p>The digital marketing services that we provide have their own set of charms. By taking our digital marketing services, our clients will be able to increase visibility and engage with their customers at the online platform.</p>
-                    </div>
+            <div class="hero-content">
+                <h1>Advanced Security Solutions for Your Business</h1>
+                <p>BusinessMateSolution provides cutting-edge CCTV surveillance systems with AI analytics, remote monitoring, and 24/7 professional support to protect what matters most.</p>
+                <div class="hero-btns">
+                    <a href="#" class="btn" data-page="products">View Products</a>
+                    <a href="#" class="btn btn-secondary" data-page="contact">Get Consultation</a>
                 </div>
             </div>
         </div>
-    </div>
-
-
-
-    <div class="pt-5 pb-5" style="background-color: #f2f2f2;">
-        <div class="container">
-            <div class="row">
-                <div class="section-head col-sm-12" id="service">
-                    <h1>সরকারি চাকরি</h1>
-                    <p>
-
-                        বাংলাদেশের বেসকারি প্রতিষ্ঠানের যে সকল নিয়োগ বিজ্ঞপ্তি গুলা হয়ে থাকে সেগুলো আমরা সংগ্রহ করে আমাদের এখানে দেওয়ার চেষ্টা করি যাতে করে বেসকারি চাকরির অনেকগুলা খবর একসাথে পাওয়া যায়।
-
-                    </p>
-                </div>
-                <div class="col-lg-4 col-sm-6">
-                    <div class="item">
-                        <span class="icon feature_box_col_one"><i class="fa fa-laptop"></i></span>
-                        <h6>Web App Development</h6>
-                        <p>Our Custom Web Development Services Include Both Front-End And Back-End Development. Whether It Is Enhancing An Existing App Or Architecting An Enterprise App, Our Developers Are Up For The Challenge.</p>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-sm-6">
-                    <div class="item">
-                        <span class="icon feature_box_col_two"><i class="fa fa-android"></i></span>
-                        <h6>Mobile App Development</h6>
-                        <p>We Have Expertise In Creating Multi-Platform Mobile App Solutions For Both Android And IOS Devices. Using PhoneGap, Xamarin, And React Native, We Offer Custom Mobile App That Runs Smoothly On Multiple Platforms.</p>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-sm-6">
-                    <div class="item">
-                        <span class="icon feature_box_col_three"><i class="fa fa-magic"></i></span>
-                        <h6>Digital Marketing</h6>
-                        <p>The digital marketing services that we provide have their own set of charms. By taking our digital marketing services, our clients will be able to increase visibility and engage with their customers at the online platform.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-
-
-    <a href="#" class="back-to-top"><i class="ion-ios-arrow-up"></i></a>
-    <script src="content/jquery/jquery.min.js"></script>
-    <script src="content/jquery/jquery-migrate.min.js"></script>
-    <script src="content/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="content/easing/easing.min.js"></script>
-    <script src="content/waypoints/waypoints.min.js"></script>
-    <script src="content/counterup/counterup.min.js"></script>
-    <script src="content/owlcarousel/owl.carousel.min.js"></script>
-    <script src="content/lightbox/js/lightbox.min.js"></script>
-
-
-
-    <section id="contact" class="contact">
-        <h1 class="heading">যোগাযোগ</h1>
     </section>
-    <div class="contact-in">
-        <div class="contact-map" style="display: block;-webkit-user-select: none;height: 360px;">
-            <iframe src=".\images\c.jpg" style="display: block;-webkit-user-select: none;height: 360px;" allowfullscreen="" loading="lazy"></iframe>
-        </div>
-        <div class="contact-form">
-            <form>
-                <input type="text" name="name" placeholder="Name" class="contact-form-txt" required>
-                <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" required placeholder="Contact number" maxlength="10" class="contact-form-phone">
-                <input type="email" name="email" placeholder="Email" class="contact-form-email" required>
-                <textarea placeholder="Your Message" name="message" class="contact-form-txtarea" required></textarea>
-                <input type="submit" value="Submit" name="submit" class="contact-form-btn">
-            </form>
-        </div>
-    </div>
 
-
-
-
-
-
-
-
-
-    <div class="footer">
-        <div class="footer-top">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-3 col-md-6 footer-links">
-                        <h4>About Us</h4>
-                        <ul>
-                            <li><i class="ion-ios-arrow-forward"></i> <a href="#">Home</a></li>
-                            <li><i class="ion-ios-arrow-forward"></i> <a href="#about">About us</a></li>
-                            <li><i class="ion-ios-arrow-forward"></i> <a href="#service">Our services</a></li>
-                            <li><i class="ion-ios-arrow-forward"></i> <a href="#">যোগাযোগ</a></li>
-                            <li><i class="ion-ios-arrow-forward"></i> <a href="#">Privacy policy</a></li>
-                        </ul>
-                    </div>
-
-                    <div class="col-lg-3 col-md-6 footer-links">
-                        <h4>Useful Links</h4>
-                        <ul>
-                            <li><i class="ion-ios-arrow-forward"></i> <a href="#portfolio">Portfolio</a></li>
-                            <li><i class="ion-ios-arrow-forward"></i> <a href="#team">Team</a></li>
-                            <!--<li><i class="ion-ios-arrow-forward"></i> <a href="#career">Career</a></li>-->
-                            <li><i class="ion-ios-arrow-forward"></i> <a href="#contact">Contact</a></li>
-                            <li><i class="ion-ios-arrow-forward"></i> <a href="#faq">FAQ</a></li>
-                        </ul>
-                    </div>
-
-                    <div class="col-lg-3 col-md-6 footer-contact" style="font-size: 1.5rem;">
-                        <h4>Contact Us</h4>
-                        <p>
-
-
-
-                            Dilara Tower, Level 8-D<br>
-                            77/3 Bir Uttom CR Dotto Road<br>
-                            Hatirpul,Dhaka-1205. <br>
-                            <strong>Phone:</strong> +88 019 76 76 55 44<br>
-                            <strong>Email:</strong> info@businessmatesolution.com<br>
-                        </p>
-
-                        <div class="social-links">
-                            <a href="https://www.facebook.com/"><i class="ion-logo-facebook"></i></a>
-                            <a href="https://twitter.com/login?lang=en"><i class="ion-logo-twitter"></i></a>
-                            <a href="https://www.linkedin.com/"><i class="ion-logo-linkedin"></i></a>
-                            <a href="https://www.instagram.com/"><i class="ion-logo-instagram"></i></a>
-                            <a href="https://accounts.google.com/servicelogin/signinchooser?flowName=GlifWebSignIn&flowEntry=ServiceLogin"><i class="ion-logo-googleplus"></i></a>
+    <!-- About Page -->
+    <section class="page" id="about-page">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">About Us</h2>
+                <p class="section-subtitle">We've been securing businesses and homes for over 15 years</p>
+            </div>
+            <div class="about-content">
+                <div class="about-img">
+                    <i class="fas fa-building"></i>
+                </div>
+                <div class="about-text">
+                    <h3>Your Trusted Security Partner</h3>
+                    <p>Founded in 2008, BusinessMateSolution has grown to become a leader in security technology solutions. We specialize in providing comprehensive CCTV surveillance systems for businesses of all sizes.</p>
+                    <p>Our mission is to deliver cutting-edge security solutions that are both effective and affordable, ensuring peace of mind for our clients.</p>
+                    <p>With over 5,000 installations nationwide and a team of certified security professionals, we're committed to excellence in every aspect of our service.</p>
+                    
+                    <div class="features-grid">
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-medal"></i>
+                            </div>
+                            <h3>15+ Years Experience</h3>
+                            <p>Industry-leading expertise since 2008</p>
                         </div>
-
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <h3>5000+ Clients</h3>
+                            <p>Trusted by businesses nationwide</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-headset"></i>
+                            </div>
+                            <h3>24/7 Support</h3>
+                            <p>Always available when you need us</p>
+                        </div>
                     </div>
-
-                    <div class="col-lg-3 col-md-6 footer-newsletter">
-                        <h4>Subscription</h4>
-                        <p>With Our Skills Put Together, You Get An Ensemble Capable Of Doing Anything And Everything Your Brand Needs. Subscribe Here To Get Our Latest Updates.</p>
-                        <form action="" method="post">
-                            <input type="email" name="email"><input type="submit" value="Subscribe">
-                        </form>
-                    </div>
-
                 </div>
             </div>
         </div>
+    </section>
 
+    <!-- Products Page -->
+    <section class="page products" id="products-page">
         <div class="container">
-            <div class="row align-items-center">
-                <div class="col-md-6 copyright" style="color: #fff; font-size: 1.3rem;">
-                    Copyright &copy; 2023 BusinessMate Solution. All Rights Reserved.
+            <div class="section-header">
+                <h2 class="section-title">Our Products</h2>
+                <p class="section-subtitle">Explore our range of high-quality surveillance solutions</p>
+            </div>
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="product-img">
+                        <i class="fas fa-video"></i>
+                    </div>
+                    <div class="product-content">
+                        <h3>HD Dome Camera</h3>
+                        <p>1080p Full HD resolution with 360° coverage</p>
+                        <ul class="product-features">
+                            <li>Night vision up to 100ft</li>
+                            <li>Weatherproof design</li>
+                            <li>Motion detection alerts</li>
+                            <li>Two-way audio</li>
+                        </ul>
+                        <div class="product-price">$149.99</div>
+                        <a href="#" class="btn">View Details</a>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img">
+                        <i class="fas fa-camera"></i>
+                    </div>
+                    <div class="product-content">
+                        <h3>4K Bullet Camera</h3>
+                        <p>Ultra HD 4K resolution with 120° wide angle</p>
+                        <ul class="product-features">
+                            <li>Infrared night vision</li>
+                            <li>Smart motion tracking</li>
+                            <li>IP67 weather rating</li>
+                            <li>Color night vision</li>
+                        </ul>
+                        <div class="product-price">$249.99</div>
+                        <a href="#" class="btn">View Details</a>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img">
+                        <i class="fas fa-wifi"></i>
+                    </div>
+                    <div class="product-content">
+                        <h3>Wireless PTZ Camera</h3>
+                        <p>Pan-Tilt-Zoom with 30x optical zoom</p>
+                        <ul class="product-features">
+                            <li>Wireless connectivity</li>
+                            <li>Auto-tracking capability</li>
+                            <li>4K resolution</li>
+                            <li>AI-powered analytics</li>
+                        </ul>
+                        <div class="product-price">$399.99</div>
+                        <a href="#" class="btn">View Details</a>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img">
+                        <i class="fas fa-door-open"></i>
+                    </div>
+                    <div class="product-content">
+                        <h3>Access Control System</h3>
+                        <p>Secure entry management solution</p>
+                        <ul class="product-features">
+                            <li>Biometric authentication</li>
+                            <li>RFID card access</li>
+                            <li>Remote management</li>
+                            <li>Access logs & reports</li>
+                        </ul>
+                        <div class="product-price">$499.99</div>
+                        <a href="#" class="btn">View Details</a>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 
-    <a href="#" class="back-to-top"><i class="ion-ios-arrow-up"></i></a>
+    <!-- Packages Page -->
+    <section class="page packages" id="packages-page">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Security Packages</h2>
+                <p class="section-subtitle">Comprehensive solutions tailored to your business needs</p>
+            </div>
+            <div class="packages-grid">
+                <div class="package-card">
+                    <h3>Basic Security</h3>
+                    <p>Ideal for small businesses</p>
+                    <div class="package-price">$899<span>/setup</span></div>
+                    <ul class="package-features">
+                        <li>4 HD Cameras</li>
+                        <li>1TB Storage</li>
+                        <li>Remote Viewing</li>
+                        <li>Mobile App Access</li>
+                        <li>1 Year Warranty</li>
+                    </ul>
+                    <a href="#" class="btn">Get Started</a>
+                </div>
+                <div class="package-card popular">
+                    <div class="popular-tag">POPULAR</div>
+                    <h3>Business Pro</h3>
+                    <p>Perfect for medium businesses</p>
+                    <div class="package-price">$1,899<span>/setup</span></div>
+                    <ul class="package-features">
+                        <li>8 HD Cameras</li>
+                        <li>2TB Storage</li>
+                        <li>Advanced Motion Detection</li>
+                        <li>24/7 Monitoring</li>
+                        <li>3 Year Warranty</li>
+                        <li>Smartphone Alerts</li>
+                    </ul>
+                    <a href="#" class="btn">Get Started</a>
+                </div>
+                <div class="package-card">
+                    <h3>Enterprise Security</h3>
+                    <p>For large businesses & facilities</p>
+                    <div class="package-price">$3,499<span>/setup</span></div>
+                    <ul class="package-features">
+                        <li>16+ HD Cameras</li>
+                        <li>5TB Storage</li>
+                        <li>AI Analytics</li>
+                        <li>24/7 Premium Support</li>
+                        <li>5 Year Warranty</li>
+                        <li>Access Control System</li>
+                        <li>Monthly Security Reports</li>
+                    </ul>
+                    <a href="#" class="btn">Get Started</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Page -->
+    <section class="page contact" id="contact-page">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Contact Us</h2>
+                <p class="section-subtitle">Get in touch for a free consultation and security assessment</p>
+            </div>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h3>Get In Touch</h3>
+                    <p>We're here to answer any questions you may have about our security solutions. Reach out to us and we'll respond as soon as we can.</p>
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div>
+                                <h4>Our Location</h4>
+                                <p>123 Security Street, Tech City, TC 12345</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone-alt"></i>
+                            </div>
+                            <div>
+                                <h4>Call Us</h4>
+                                <p>+1 (555) 123-4567</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div>
+                                <h4>Email Us</h4>
+                                <p>info@businessmatesolution.com</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div>
+                                <h4>Business Hours</h4>
+                                <p>Monday-Friday: 9AM - 6PM<br>Saturday: 10AM - 4PM</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form>
+                        <div class="form-group">
+                            <label for="name">Full Name</label>
+                            <input type="text" id="name" class="form-control" placeholder="Your Name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" class="form-control" placeholder="Your Email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" class="form-control" placeholder="Your Phone">
+                        </div>
+                        <div class="form-group">
+                            <label for="business">Business Type</label>
+                            <select id="business" class="form-control">
+                                <option value="">Select Business Type</option>
+                                <option value="retail">Retail Store</option>
+                                <option value="office">Office Building</option>
+                                <option value="warehouse">Warehouse</option>
+                                <option value="restaurant">Restaurant</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" class="form-control" placeholder="Your Message" required></textarea>
+                        </div>
+                        <button type="submit" class="btn">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-col">
+                    <div class="logo">
+                        <div class="logo-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <div class="logo-text">Business<span>MateSolution</span></div>
+                    </div>
+                    <p>Providing advanced security solutions for businesses since 2008. Trusted by thousands of companies nationwide for our reliable and innovative CCTV systems.</p>
+                    <div class="footer-social">
+                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="#" data-page="home">Home</a></li>
+                        <li><a href="#" data-page="about">About Us</a></li>
+                        <li><a href="#" data-page="products">Products</a></li>
+                        <li><a href="#" data-page="packages">Packages</a></li>
+                        <li><a href="#" data-page="contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Our Products</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Dome Cameras</a></li>
+                        <li><a href="#">Bullet Cameras</a></li>
+                        <li><a href="#">PTZ Cameras</a></li>
+                        <li><a href="#">Wireless Systems</a></li>
+                        <li><a href="#">Access Control</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Newsletter</h4>
+                    <p>Subscribe to our newsletter for security tips, product updates, and special offers.</p>
+                    <div class="form-group" style="margin-top: 20px;">
+                        <input type="email" class="form-control" placeholder="Your Email">
+                        <button class="btn" style="width: 100%; margin-top: 15px;">Subscribe</button>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 BusinessMateSolution. All rights reserved. Designed with <i class="fas fa-heart" style="color: #ff6b6b;"></i> for your security.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const nav = document.querySelector('nav');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            nav.classList.toggle('active');
+        });
+        
+        // Page Navigation
+        const navLinks = document.querySelectorAll('.nav-link, .footer-links a');
+        const pages = document.querySelectorAll('.page');
+        
+        // Function to show a specific page
+        function showPage(pageId) {
+            // Hide all pages
+            pages.forEach(page => {
+                page.classList.remove('active');
+            });
+            
+            // Show the selected page
+            document.getElementById(pageId).classList.add('active');
+            
+            // Update active nav link
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active');
+            });
+            
+            document.querySelector(`.nav-link[data-page="${pageId.split('-')[0]}"]`).classList.add('active');
+            
+            // Close mobile menu if open
+            nav.classList.remove('active');
+            
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }
+        
+        // Add event listeners to navigation links
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const page = link.getAttribute('data-page');
+                if (page) {
+                    showPage(`${page}-page`);
+                }
+            });
+        });
+        
+        // Hero buttons
+        document.querySelectorAll('.hero-btns .btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                const page = btn.getAttribute('data-page');
+                if (page) {
+                    showPage(`${page}-page`);
+                }
+            });
+        });
+        
+        // Set home page as active initially
+        document.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('home-page').classList.add('active');
+        });
+        
+        // Form submission
+        const contactForm = document.querySelector('.contact-form form');
+        if (contactForm) {
+            contactForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                alert('Thank you for your message! We will contact you shortly.');
+                contactForm.reset();
+            });
+        }
+    </script>
 </body>
 </html>
