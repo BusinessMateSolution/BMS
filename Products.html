@@ -1,0 +1,1006 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products | BusinessMate Solution - Security Systems</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        :root {
+            --primary-blue: #1a56db;
+            --dark-blue: #0e2a5a;
+            --light-blue: #dbeafe;
+            --primary-green: #10b981;
+            --dark-green: #047857;
+            --light-green: #d1fae5;
+            --light-gray: #f3f4f6;
+            --dark-gray: #4b5563;
+            --white: #ffffff;
+        }
+        
+        body {
+            background: linear-gradient(135deg, var(--light-blue), var(--light-green));
+            color: var(--dark-gray);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--dark-blue), var(--primary-blue));
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+        
+        .logo-icon {
+            background: var(--primary-green);
+            color: white;
+            width: 45px;
+            height: 45px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .logo-text {
+            color: white;
+            font-size: 28px;
+            font-weight: 700;
+        }
+        
+        .logo-text .business {
+            color: var(--white);
+        }
+        
+        .logo-text .mate {
+            color: var(--light-green);
+        }
+        
+        .logo-text .solution {
+            color: var(--primary-green);
+            font-weight: 800;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+        
+        nav a {
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            padding: 8px 0;
+            position: relative;
+        }
+        
+        nav a:hover, nav a.active {
+            color: white;
+        }
+        
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: var(--primary-green);
+            transition: width 0.3s ease;
+        }
+        
+        nav a:hover::after, nav a.active::after {
+            width: 100%;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .products-hero {
+            background: linear-gradient(rgba(14, 42, 90, 0.85), rgba(14, 42, 90, 0.9)), url('https://images.unsplash.com/photo-1600891964599-f61ba0e24092?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            min-height: 50vh;
+            display: flex;
+            align-items: center;
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .hero-content h1 {
+            font-size: 3.5rem;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+        
+        .breadcrumb {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            margin-top: 20px;
+        }
+        
+        .breadcrumb li {
+            display: inline-flex;
+            align-items: center;
+        }
+        
+        .breadcrumb li:not(:last-child)::after {
+            content: '/';
+            margin: 0 15px;
+            opacity: 0.7;
+        }
+        
+        .breadcrumb a {
+            color: var(--light-green);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .breadcrumb a:hover {
+            color: white;
+        }
+        
+        /* Products Section */
+        .products-section {
+            padding: 80px 0;
+        }
+        
+        .section-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 60px;
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            color: var(--dark-blue);
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--primary-green);
+            border-radius: 2px;
+        }
+        
+        .section-subtitle {
+            color: var(--dark-gray);
+            font-size: 1.1rem;
+        }
+        
+        /* Categories */
+        .categories {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 50px;
+        }
+        
+        .category-btn {
+            background: var(--white);
+            border: 2px solid var(--light-blue);
+            padding: 12px 25px;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .category-btn:hover, .category-btn.active {
+            background: var(--primary-blue);
+            color: white;
+            border-color: var(--primary-blue);
+        }
+        
+        /* Products Grid */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .product-card {
+            background: var(--white);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            border: 1px solid #e5e7eb;
+            position: relative;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .product-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--primary-green);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 30px;
+            font-size: 14px;
+            font-weight: 600;
+            z-index: 2;
+        }
+        
+        .product-img {
+            height: 220px;
+            background: linear-gradient(45deg, var(--primary-blue), var(--primary-green));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+        }
+        
+        .product-content {
+            padding: 25px;
+        }
+        
+        .product-category {
+            color: var(--primary-green);
+            font-weight: 600;
+            margin-bottom: 10px;
+            display: block;
+        }
+        
+        .product-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--dark-blue);
+        }
+        
+        .product-features {
+            list-style: none;
+            margin: 15px 0 20px;
+        }
+        
+        .product-features li {
+            padding: 8px 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .product-features li::before {
+            content: '\f00c';
+            font-family: 'Font Awesome 5 Free';
+            font-weight: 900;
+            color: var(--primary-green);
+        }
+        
+        .product-price {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-blue);
+            margin: 15px 0;
+        }
+        
+        .product-price span {
+            font-size: 1rem;
+            color: var(--dark-gray);
+            font-weight: normal;
+        }
+        
+        .product-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: var(--primary-green);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            flex: 1;
+            text-align: center;
+        }
+        
+        .btn:hover {
+            background: var(--dark-green);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+        }
+        
+        .btn-secondary {
+            background: var(--primary-blue);
+        }
+        
+        .btn-secondary:hover {
+            background: var(--dark-blue);
+        }
+        
+        /* Featured Products */
+        .featured-products {
+            background: var(--white);
+            padding: 80px 0;
+        }
+        
+        /* Tech Specs */
+        .tech-specs {
+            background: linear-gradient(to right, var(--light-blue), var(--light-green));
+            padding: 80px 0;
+        }
+        
+        .specs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .spec-card {
+            background: var(--white);
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .spec-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .spec-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--light-blue);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-blue);
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        
+        .spec-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: var(--dark-blue);
+        }
+        
+        /* CTA Section */
+        .cta {
+            background: linear-gradient(135deg, var(--dark-blue), var(--primary-blue));
+            padding: 80px 0;
+            color: white;
+            text-align: center;
+        }
+        
+        .cta-content {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .cta h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .cta p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--dark-blue);
+            color: white;
+            padding: 60px 0 30px;
+        }
+        
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 38px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-col h4 {
+            font-size: 1.3rem;
+            margin-bottom: 25px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .footer-col h4::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background: var(--primary-green);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 15px;
+        }
+        
+        .footer-links a {
+            color: #cbd5e1;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: var(--primary-green);
+            padding-left: 5px;
+        }
+        
+        .footer-social {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-link {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 18px;
+            transition: all 0.3s ease;
+        }
+        
+        .social-link:hover {
+            background: var(--primary-green);
+            transform: translateY(-5px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #cbd5e1;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .hero-content h1 {
+                font-size: 2.8rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            nav {
+                position: fixed;
+                top: 85px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 85px);
+                background: var(--dark-blue);
+                transition: all 0.4s ease;
+                padding: 40px 0;
+            }
+            
+            nav.active {
+                left: 0;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+                gap: 30px;
+            }
+            
+            .hero-content h1 {
+                font-size: 2.4rem;
+            }
+            
+            .product-actions {
+                flex-direction: column;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .products-hero {
+                min-height: auto;
+            }
+            
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .products-section, .featured-products, .tech-specs, .cta {
+                padding: 60px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <a href="#" class="logo">
+                <!--<div class="logo-icon">-->
+                <!--<i class="fas fa-shield-alt"></i>-->
+                <div class="logo">
+                    <img src="logo.png" alt="" style="border-radius: 10px; background-color: white; width: 50px; height: 40px; padding-left: 5px; ">
+                </div>
+                <!--</div>-->
+                <div class="logo-text">
+                    <span class="business">Business</span><span class="mate">Mate</span> <span class="solution">Solution</span>
+                </div>
+            </a>
+            <!--<a href="index.html" class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <div class="logo-text">
+                    <span class="business">Business</span><span class="mate">Mate</span> <span class="solution">Solution</span>
+                </div>
+            </a>-->
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+            <nav>
+                <ul>
+                    <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="about.html"><i class="fas fa-info-circle"></i> About</a></li>
+                    <li><a href="products.html" class="active"><i class="fas fa-camera"></i> Products</a></li>
+                    <li><a href="packages.html"><i class="fas fa-box"></i> Packages</a></li>
+                    <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="products-hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Our Security Products</h1>
+                <p>Advanced security solutions for homes, businesses, and enterprises</p>
+                <ul class="breadcrumb">
+                    <li><a href="index.html">Home</a></li>
+                    <li>Products</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Security Solutions</h2>
+                <p class="section-subtitle">Explore our range of advanced security products</p>
+            </div>
+
+            <div class="categories">
+                <button class="category-btn active">All Products</button>
+                <button class="category-btn">CCTV Cameras</button>
+                <button class="category-btn">Access Control</button>
+                <button class="category-btn">Alarm Systems</button>
+                <button class="category-btn">Smart Home</button>
+                <button class="category-btn">Network Security</button>
+            </div>
+
+            <div class="products-grid">
+                <!-- Product 1 -->
+                <div class="product-card">
+                    <div class="product-badge">BEST SELLER</div>
+                    <div class="product-img">
+                        <i class="fas fa-video"></i>
+                    </div>
+                    <div class="product-content">
+                        <span class="product-category">CCTV Cameras</span>
+                        <h3>4K Ultra HD Dome Camera</h3>
+                        <p>Professional surveillance camera with 360° coverage and night vision</p>
+                        <ul class="product-features">
+                            <li>4K Ultra HD resolution</li>
+                            <li>Night vision up to 100ft</li>
+                            <li>Weatherproof design</li>
+                            <li>Motion detection alerts</li>
+                        </ul>
+                        <div class="product-price">$199.99 <span>per unit</span></div>
+                        <div class="product-actions">
+                            <a href="#" class="btn">View Details</a>
+                            <a href="#" class="btn btn-secondary">Get Quote</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 2 -->
+                <div class="product-card">
+                    <div class="product-badge">NEW</div>
+                    <div class="product-img">
+                        <i class="fas fa-fingerprint"></i>
+                    </div>
+                    <div class="product-content">
+                        <span class="product-category">Access Control</span>
+                        <h3>Biometric Access System</h3>
+                        <p>Advanced fingerprint recognition system with remote management</p>
+                        <ul class="product-features">
+                            <li>Fingerprint and RFID access</li>
+                            <li>5000+ user capacity</li>
+                            <li>Real-time monitoring</li>
+                            <li>Emergency lockdown feature</li>
+                        </ul>
+                        <div class="product-price">$499.99 <span>starter kit</span></div>
+                        <div class="product-actions">
+                            <a href="#" class="btn">View Details</a>
+                            <a href="#" class="btn btn-secondary">Get Quote</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 3 -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <i class="fas fa-bell"></i>
+                    </div>
+                    <div class="product-content">
+                        <span class="product-category">Alarm Systems</span>
+                        <h3>Smart Intrusion Alarm</h3>
+                        <p>Complete security alarm system with smartphone integration</p>
+                        <ul class="product-features">
+                            <li>Wireless sensors</li>
+                            <li>Smartphone alerts</li>
+                            <li>24/7 monitoring service</li>
+                            <li>Police dispatch integration</li>
+                        </ul>
+                        <div class="product-price">$299.99 <span>starter kit</span></div>
+                        <div class="product-actions">
+                            <a href="#" class="btn">View Details</a>
+                            <a href="#" class="btn btn-secondary">Get Quote</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 4 -->
+                <div class="product-card">
+                    <div class="product-badge">POPULAR</div>
+                    <div class="product-img">
+                        <i class="fas fa-wifi"></i>
+                    </div>
+                    <div class="product-content">
+                        <span class="product-category">Network Security</span>
+                        <h3>Enterprise Firewall</h3>
+                        <p>Advanced network security appliance for business protection</p>
+                        <ul class="product-features">
+                            <li>Threat prevention</li>
+                            <li>VPN support</li>
+                            <li>Content filtering</li>
+                            <li>24/7 security updates</li>
+                        </ul>
+                        <div class="product-price">$899.99 <span>per unit</span></div>
+                        <div class="product-actions">
+                            <a href="#" class="btn">View Details</a>
+                            <a href="#" class="btn btn-secondary">Get Quote</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 5 -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <div class="product-content">
+                        <span class="product-category">Smart Home</span>
+                        <h3>Smart Home Hub</h3>
+                        <p>Central control system for home automation and security</p>
+                        <ul class="product-features">
+                            <li>Voice control integration</li>
+                            <li>Security camera support</li>
+                            <li>Smart lighting control</li>
+                            <li>Energy monitoring</li>
+                        </ul>
+                        <div class="product-price">$249.99 <span>per unit</span></div>
+                        <div class="product-actions">
+                            <a href="#" class="btn">View Details</a>
+                            <a href="#" class="btn btn-secondary">Get Quote</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 6 -->
+                <div class="product-card">
+                    <div class="product-badge">ADVANCED</div>
+                    <div class="product-img">
+                        <i class="fas fa-camera"></i>
+                    </div>
+                    <div class="product-content">
+                        <span class="product-category">CCTV Cameras</span>
+                        <h3>PTZ Security Camera</h3>
+                        <p>Professional pan-tilt-zoom camera with auto-tracking</p>
+                        <ul class="product-features">
+                            <li>30x optical zoom</li>
+                            <li>360° panoramic view</li>
+                            <li>Auto-tracking capability</li>
+                            <li>Weatherproof design</li>
+                        </ul>
+                        <div class="product-price">$349.99 <span>per unit</span></div>
+                        <div class="product-actions">
+                            <a href="#" class="btn">View Details</a>
+                            <a href="#" class="btn btn-secondary">Get Quote</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tech Specs Section -->
+    <section class="tech-specs">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Technology Specifications</h2>
+                <p class="section-subtitle">Advanced features for maximum security</p>
+            </div>
+
+            <div class="specs-grid">
+                <div class="spec-card">
+                    <div class="spec-icon">
+                        <i class="fas fa-eye"></i>
+                    </div>
+                    <h3>Night Vision Technology</h3>
+                    <p>Our cameras feature advanced infrared technology that provides clear images even in complete darkness, with visibility up to 100 feet.</p>
+                </div>
+
+                <div class="spec-card">
+                    <div class="spec-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3>AI-Powered Analytics</h3>
+                    <p>Smart detection algorithms identify people, vehicles, and unusual activities while minimizing false alarms from animals or weather.</p>
+                </div>
+
+                <div class="spec-card">
+                    <div class="spec-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>Remote Monitoring</h3>
+                    <p>Access and control your security system from anywhere using our mobile app with real-time alerts and video streaming.</p>
+                </div>
+
+                <div class="spec-card">
+                    <div class="spec-icon">
+                        <i class="fas fa-cloud"></i>
+                    </div>
+                    <h3>Cloud Storage</h3>
+                    <p>Secure cloud storage options with military-grade encryption ensure your footage is always safe and accessible.</p>
+                </div>
+
+                <div class="spec-card">
+                    <div class="spec-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Cybersecurity</h3>
+                    <p>All our connected devices feature enterprise-grade security protocols to protect against hacking and unauthorized access.</p>
+                </div>
+
+                <div class="spec-card">
+                    <div class="spec-icon">
+                        <i class="fas fa-sync-alt"></i>
+                    </div>
+                    <h3>Seamless Integration</h3>
+                    <p>Our systems integrate with existing security infrastructure and popular smart home platforms for unified control.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Need a Custom Security Solution?</h2>
+                <p>Our security experts will design a system tailored to your specific needs and budget.</p>
+                <a href="contact.html" class="btn">Request Consultation</a>
+                <a href="tel:+15551234567" class="btn btn-secondary">Call Us Now</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-col">
+                    <a href="#" class="logo">
+                        <!--<div class="logo-icon">-->
+                        <!--<i class="fas fa-shield-alt"></i>-->
+                        <div class="logo">
+                            <img src="logo.png" alt="" style="border-radius: 10px; background-color: white; width: 50px; height: 40px; padding-left: 5px; ">
+                        </div>
+                        <!--</div>-->
+                        <div style=" color: white; font-size: 18px; font-weight: 700;">
+                            <span class="business">Business</span><span class="mate">Mate</span> <span style="color: #10b981">Solution</span>
+                        </div>
+                    </a>
+                    <!--<a href="#" class="logo">
+                        <div class="logo-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <div class="logo-text">
+                            <span class="business">Business</span><span class="mate">Mate</span> <span class="solution">Solution</span>
+                        </div>
+                    </a>-->
+                    <p>Providing advanced security solutions for homes and businesses since 2008. Trusted by thousands of customers nationwide.</p>
+                    <div class="footer-social">
+                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="About.html">About Us</a></li>
+                        <li><a href="Products.html">Products</a></li>
+                        <li><a href="Packages.html">Packages</a></li>
+                        <li><a href="Contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Our Services</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">CCTV Installation</a></li>
+                        <li><a href="#">Access Control</a></li>
+                        <li><a href="#">Alarm Systems</a></li>
+                        <li><a href="#">Fire Safety</a></li>
+                        <li><a href="#">Network Security</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Contact Us</h4>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-map-marker-alt"></i> 123 Security Street, City</li>
+                        <li><i class="fas fa-phone"></i> +1 (555) 123-4567</li>
+                        <li><i class="fas fa-envelope"></i> businessmatesolution@gmail.com</li>
+                        <li><i class="fas fa-clock"></i> Mon-Fri: 9AM - 6PM</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 BusinessMate Solution. All rights reserved. Designed with <i class="fas fa-heart" style="color: #ff6b6b;"></i> for your security.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const nav = document.querySelector('nav');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            nav.classList.toggle('active');
+        });
+
+        // Category Filter
+        const categoryBtns = document.querySelectorAll('.category-btn');
+
+        categoryBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Remove active class from all buttons
+                categoryBtns.forEach(b => b.classList.remove('active'));
+                // Add active class to clicked button
+                btn.classList.add('active');
+
+                // In a real implementation, you would filter products here
+            });
+        });
+
+        // Animation on scroll
+        const animateOnScroll = () => {
+            const elements = document.querySelectorAll('.product-card, .spec-card');
+            elements.forEach(element => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight / 1.3;
+
+                if (elementPosition < screenPosition) {
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0)';
+                }
+            });
+        };
+
+        // Set initial state for animation
+        document.querySelectorAll('.product-card, .spec-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        });
+
+        window.addEventListener('scroll', animateOnScroll);
+        window.addEventListener('load', animateOnScroll);
+    </script>
+</body>
+</html>

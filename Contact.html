@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | BusinessMate Solution - Security Systems</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        :root {
+            --primary-blue: #1a56db;
+            --dark-blue: #0e2a5a;
+            --light-blue: #dbeafe;
+            --primary-green: #10b981;
+            --dark-green: #047857;
+            --light-green: #d1fae5;
+            --light-gray: #f3f4f6;
+            --dark-gray: #4b5563;
+            --white: #ffffff;
+        }
+        
+        body {
+            background: linear-gradient(135deg, var(--light-blue), var(--light-green));
+            color: var(--dark-gray);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--dark-blue), var(--primary-blue));
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+        
+        .logo-icon {
+            background: var(--primary-green);
+            color: white;
+            width: 45px;
+            height: 45px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .logo-text {
+            color: white;
+            font-size: 28px;
+            font-weight: 700;
+        }
+        
+        .logo-text .business {
+            color: var(--white);
+        }
+        
+        .logo-text .mate {
+            color: var(--light-green);
+        }
+        
+        .logo-text .solution {
+            color: var(--primary-green);
+            font-weight: 800;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+        
+        nav a {
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            padding: 8px 0;
+            position: relative;
+        }
+        
+        nav a:hover, nav a.active {
+            color: white;
+        }
+        
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: var(--primary-green);
+            transition: width 0.3s ease;
+        }
+        
+        nav a:hover::after, nav a.active::after {
+            width: 100%;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .contact-hero {
+            background: linear-gradient(rgba(14, 42, 90, 0.85), rgba(14, 42, 90, 0.9)), url('https://images.unsplash.com/photo-1528747045269-390fe33c19f2?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            min-height: 50vh;
+            display: flex;
+            align-items: center;
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .hero-content h1 {
+            font-size: 3.5rem;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+        
+        .breadcrumb {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            margin-top: 20px;
+        }
+        
+        .breadcrumb li {
+            display: inline-flex;
+            align-items: center;
+        }
+        
+        .breadcrumb li:not(:last-child)::after {
+            content: '/';
+            margin: 0 15px;
+            opacity: 0.7;
+        }
+        
+        .breadcrumb a {
+            color: var(--light-green);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .breadcrumb a:hover {
+            color: white;
+        }
+        
+        /* Contact Section */
+        .contact-section {
+            padding: 80px 0;
+        }
+        
+        .section-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 60px;
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            color: var(--dark-blue);
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--primary-green);
+            border-radius: 2px;
+        }
+        
+        .section-subtitle {
+            color: var(--dark-gray);
+            font-size: 1.1rem;
+        }
+        
+        .contact-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 50px;
+        }
+        
+        .contact-info {
+            background: var(--white);
+            border-radius: 10px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        }
+        
+        .contact-info h3 {
+            font-size: 1.8rem;
+            margin-bottom: 25px;
+            color: var(--dark-blue);
+            position: relative;
+            display: inline-block;
+        }
+        
+        .contact-info h3::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: var(--primary-green);
+        }
+        
+        .contact-details {
+            margin: 30px 0;
+        }
+        
+        .contact-item {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 25px;
+            align-items: flex-start;
+        }
+        
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--light-blue);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-blue);
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+        
+        .contact-text h4 {
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+            color: var(--dark-blue);
+        }
+        
+        .business-hours {
+            background: var(--light-green);
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 30px;
+        }
+        
+        .business-hours h4 {
+            margin-bottom: 15px;
+            color: var(--dark-blue);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .hours-list {
+            list-style: none;
+        }
+        
+        .hours-list li {
+            padding: 8px 0;
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+        
+        .hours-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .contact-form {
+            background: var(--white);
+            border-radius: 10px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--dark-blue);
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 14px;
+            border-radius: 4px;
+            border: 1px solid #d1d5db;
+            background: var(--white);
+            color: var(--dark-gray);
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 0 3px rgba(26, 86, 219, 0.1);
+        }
+        
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: var(--primary-green);
+            color: white;
+            padding: 14px 32px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn:hover {
+            background: var(--dark-green);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+        }
+        
+        .btn-block {
+            display: block;
+            width: 100%;
+            text-align: center;
+        }
+        
+        /* Map Section */
+        .map-section {
+            padding: 0 0 80px;
+        }
+        
+        .map-container {
+            height: 500px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        #map {
+            height: 100%;
+            width: 100%;
+        }
+        
+        /* FAQ Section */
+        .faq {
+            background: var(--white);
+            padding: 80px 0;
+            border-radius: 10px;
+        }
+        
+        .faq-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .faq-card {
+            background: var(--light-blue);
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .faq-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: var(--dark-blue);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .faq-card h3 i {
+            color: var(--primary-green);
+            font-size: 24px;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--dark-blue);
+            color: white;
+            padding: 60px 0 30px;
+        }
+        
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 38px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-col h4 {
+            font-size: 1.3rem;
+            margin-bottom: 25px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .footer-col h4::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background: var(--primary-green);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 15px;
+        }
+        
+        .footer-links a {
+            color: #cbd5e1;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: var(--primary-green);
+            padding-left: 5px;
+        }
+        
+        .footer-social {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-link {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 18px;
+            transition: all 0.3s ease;
+        }
+        
+        .social-link:hover {
+            background: var(--primary-green);
+            transform: translateY(-5px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #cbd5e1;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .hero-content h1 {
+                font-size: 2.8rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            nav {
+                position: fixed;
+                top: 85px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 85px);
+                background: var(--dark-blue);
+                transition: all 0.4s ease;
+                padding: 40px 0;
+            }
+            
+            nav.active {
+                left: 0;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+                gap: 30px;
+            }
+            
+            .hero-content h1 {
+                font-size: 2.4rem;
+            }
+            
+            .map-container {
+                height: 400px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .contact-hero {
+                min-height: auto;
+            }
+            
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .contact-section, .map-section, .faq {
+                padding: 60px 0;
+            }
+            
+            .contact-container {
+                gap: 30px;
+            }
+            
+            .contact-info, .contact-form {
+                padding: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <a href="#" class="logo">
+                <!--<div class="logo-icon">-->
+                <!--<i class="fas fa-shield-alt"></i>-->
+                <div class="logo">
+                    <img src="logo.png" alt="" style="border-radius: 10px; background-color: white; width: 50px; height: 40px; padding-left: 5px; ">
+                </div>
+                <!--</div>-->
+                <div class="logo-text">
+                    <span class="business">Business</span><span class="mate">Mate</span> <span class="solution">Solution</span>
+                </div>
+            </a>
+            <!--<a href="index.html" class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <div class="logo-text">
+                    <span class="business">Business</span><span class="mate">Mate</span> <span class="solution">Solution</span>
+                </div>
+            </a>-->
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+            <nav>
+                <ul>
+                    <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="about.html"><i class="fas fa-info-circle"></i> About</a></li>
+                    <li><a href="products.html"><i class="fas fa-camera"></i> Products</a></li>
+                    <li><a href="packages.html"><i class="fas fa-box"></i> Packages</a></li>
+                    <li><a href="contact.html" class="active"><i class="fas fa-envelope"></i> Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="contact-hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Contact Us</h1>
+                <p>Reach out to our security experts for any inquiries or assistance</p>
+                <ul class="breadcrumb">
+                    <li><a href="index.html">Home</a></li>
+                    <li>Contact</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Get In Touch</h2>
+                <p class="section-subtitle">We're here to answer any questions about our security solutions</p>
+            </div>
+
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h3>Contact Information</h3>
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4>Our Location</h4>
+                                <p>123 Security Street, Tech City, TC 12345</p>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone-alt"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4>Call Us</h4>
+                                <p>+1 (555) 123-4567</p>
+                                <p>+1 (555) 987-6543 (24/7 Support)</p>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4>Email Us</h4>
+                                <p>businessmatesolution@gmail.com</p>
+                                <p>support@businessmatesolution.com</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="business-hours">
+                        <h4><i class="fas fa-clock"></i> Business Hours</h4>
+                        <ul class="hours-list">
+                            <li>
+                                <span>Monday - Friday:</span>
+                                <span>9:00 AM - 6:00 PM</span>
+                            </li>
+                            <li>
+                                <span>Saturday:</span>
+                                <span>10:00 AM - 4:00 PM</span>
+                            </li>
+                            <li>
+                                <span>Sunday:</span>
+                                <span>Closed</span>
+                            </li>
+                            <li>
+                                <span>Emergency Support:</span>
+                                <span>24/7</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-social" style="margin-top: 30px;">
+                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+
+                <div class="contact-form">
+                    <h3 style="margin-bottom: 25px; color: var(--dark-blue);">Send Us a Message</h3>
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="name">Full Name *</label>
+                            <input type="text" id="name" class="form-control" placeholder="Your Name" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Email Address *</label>
+                            <input type="email" id="email" class="form-control" placeholder="Your Email" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" class="form-control" placeholder="Your Phone">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="subject">Subject *</label>
+                            <select id="subject" class="form-control" required>
+                                <option value="">Select a Subject</option>
+                                <option value="sales">Sales Inquiry</option>
+                                <option value="support">Technical Support</option>
+                                <option value="quote">Request a Quote</option>
+                                <option value="installation">Installation Inquiry</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message">Message *</label>
+                            <textarea id="message" class="form-control" placeholder="Your Message" required></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-block">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Map Section -->
+    <section class="map-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Our Location</h2>
+                <p class="section-subtitle">Visit our office or get directions</p>
+            </div>
+
+            <div class="map-container">
+                <div id="map"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Frequently Asked Questions</h2>
+                <p class="section-subtitle">Find answers to common questions about our services</p>
+            </div>
+
+            <div class="faq-grid">
+                <div class="faq-card">
+                    <h3><i class="fas fa-question-circle"></i> How quickly do you respond to inquiries?</h3>
+                    <p>We respond to all inquiries within 24 hours during business days. For urgent matters, call our 24/7 support line for immediate assistance.</p>
+                </div>
+
+                <div class="faq-card">
+                    <h3><i class="fas fa-question-circle"></i> Do you offer free consultations?</h3>
+                    <p>Yes, we provide free security consultations. Our experts will assess your needs and recommend the best security solutions for your property.</p>
+                </div>
+
+                <div class="faq-card">
+                    <h3><i class="fas fa-question-circle"></i> What areas do you serve?</h3>
+                    <p>We serve clients nationwide with our security solutions. Our installation teams cover all major cities and surrounding areas.</p>
+                </div>
+
+                <div class="faq-card">
+                    <h3><i class="fas fa-question-circle"></i> How long does installation take?</h3>
+                    <p>Installation time varies based on the system complexity. Most residential installations take 4-8 hours, while commercial projects may take 1-3 days.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-col">
+                    <a href="#" class="logo">
+                        <!--<div class="logo-icon">-->
+                        <!--<i class="fas fa-shield-alt"></i>-->
+                        <div class="logo">
+                            <img src="logo.png" alt="" style="border-radius: 10px; background-color: white; width: 50px; height: 40px; padding-left: 5px; ">
+                        </div>
+                        <!--</div>-->
+                        <div style=" color: white; font-size: 18px; font-weight: 700;">
+                            <span class="business">Business</span><span class="mate">Mate</span> <span style="color: #10b981">Solution</span>
+                        </div>
+                    </a>
+                    <!--<a href="#" class="logo">
+                        <div class="logo-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <div class="logo-text">
+                            <span class="business">Business</span><span class="mate">Mate</span> <span class="solution">Solution</span>
+                        </div>
+                    </a>-->
+                    <p>Providing advanced security solutions for homes and businesses since 2008. Trusted by thousands of customers nationwide.</p>
+                    <div class="footer-social">
+                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="About.html">About Us</a></li>
+                        <li><a href="Products.html">Products</a></li>
+                        <li><a href="Packages.html">Packages</a></li>
+                        <li><a href="Contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Our Services</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">CCTV Installation</a></li>
+                        <li><a href="#">Access Control</a></li>
+                        <li><a href="#">Alarm Systems</a></li>
+                        <li><a href="#">Fire Safety</a></li>
+                        <li><a href="#">Network Security</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Contact Us</h4>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-map-marker-alt"></i> 123 Security Street, City</li>
+                        <li><i class="fas fa-phone"></i> +1 (555) 123-4567</li>
+                        <li><i class="fas fa-envelope"></i> businessmatesolution@gmail.com</li>
+                        <li><i class="fas fa-clock"></i> Mon-Fri: 9AM - 6PM</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 BusinessMate Solution. All rights reserved. Designed with <i class="fas fa-heart" style="color: #ff6b6b;"></i> for your security.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const nav = document.querySelector('nav');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            nav.classList.toggle('active');
+        });
+
+        // Form Submission
+        const contactForm = document.getElementById('contactForm');
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            // Form validation would go here
+
+            // Show success message
+            alert('Thank you for your message! We will contact you shortly.');
+            contactForm.reset();
+        });
+
+        // Initialize Map
+        const map = L.map('map').setView([40.7128, -74.0060], 13);
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        // Add a marker
+        L.marker([40.7128, -74.0060]).addTo(map)
+            .bindPopup('BusinessMate Solution Headquarters')
+            .openPopup();
+    </script>
+</body>
+</html>

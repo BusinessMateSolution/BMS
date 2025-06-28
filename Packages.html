@@ -1,0 +1,982 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Security Packages | BusinessMate Solution</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        :root {
+            --primary-blue: #1a56db;
+            --dark-blue: #0e2a5a;
+            --light-blue: #dbeafe;
+            --primary-green: #10b981;
+            --dark-green: #047857;
+            --light-green: #d1fae5;
+            --light-gray: #f3f4f6;
+            --dark-gray: #4b5563;
+            --white: #ffffff;
+        }
+        
+        body {
+            background: linear-gradient(135deg, var(--light-blue), var(--light-green));
+            color: var(--dark-gray);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--dark-blue), var(--primary-blue));
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+        
+        .logo-icon {
+            background: var(--primary-green);
+            color: white;
+            width: 45px;
+            height: 45px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .logo-text {
+            color: white;
+            font-size: 28px;
+            font-weight: 700;
+        }
+        
+        .logo-text .business {
+            color: var(--white);
+        }
+        
+        .logo-text .mate {
+            color: var(--light-green);
+        }
+        
+        .logo-text .solution {
+            color: var(--primary-green);
+            font-weight: 800;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+        
+        nav a {
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            padding: 8px 0;
+            position: relative;
+        }
+        
+        nav a:hover, nav a.active {
+            color: white;
+        }
+        
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: var(--primary-green);
+            transition: width 0.3s ease;
+        }
+        
+        nav a:hover::after, nav a.active::after {
+            width: 100%;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .packages-hero {
+            background: linear-gradient(rgba(14, 42, 90, 0.85), rgba(14, 42, 90, 0.9)), url('https://images.unsplash.com/photo-1563013544-824ae1b704d3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            min-height: 50vh;
+            display: flex;
+            align-items: center;
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .hero-content h1 {
+            font-size: 3.5rem;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+        
+        .breadcrumb {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            margin-top: 20px;
+        }
+        
+        .breadcrumb li {
+            display: inline-flex;
+            align-items: center;
+        }
+        
+        .breadcrumb li:not(:last-child)::after {
+            content: '/';
+            margin: 0 15px;
+            opacity: 0.7;
+        }
+        
+        .breadcrumb a {
+            color: var(--light-green);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .breadcrumb a:hover {
+            color: white;
+        }
+        
+        /* Packages Section */
+        .packages-section {
+            padding: 80px 0;
+        }
+        
+        .section-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 60px;
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            color: var(--dark-blue);
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--primary-green);
+            border-radius: 2px;
+        }
+        
+        .section-subtitle {
+            color: var(--dark-gray);
+            font-size: 1.1rem;
+        }
+        
+        .packages-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .package-card {
+            background: var(--white);
+            border-radius: 10px;
+            padding: 40px 30px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .package-card.popular {
+            border: 3px solid var(--primary-green);
+            transform: scale(1.03);
+        }
+        
+        .popular-tag {
+            position: absolute;
+            top: 20px;
+            right: -30px;
+            background: var(--primary-green);
+            color: white;
+            padding: 8px 40px;
+            transform: rotate(45deg);
+            font-weight: 600;
+            font-size: 14px;
+        }
+        
+        .package-card h3 {
+            font-size: 1.8rem;
+            color: var(--dark-blue);
+            margin-bottom: 15px;
+        }
+        
+        .package-card .package-subtitle {
+            color: var(--primary-blue);
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+        
+        .package-price {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-blue);
+            margin: 20px 0;
+        }
+        
+        .package-price span {
+            font-size: 1rem;
+            color: var(--dark-gray);
+        }
+        
+        .package-features {
+            list-style: none;
+            margin: 25px 0;
+            flex-grow: 1;
+        }
+        
+        .package-features li {
+            padding: 12px 0;
+            border-bottom: 1px solid #e5e7eb;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .package-features li::before {
+            content: '\f00c';
+            font-family: 'Font Awesome 5 Free';
+            font-weight: 900;
+            color: var(--primary-green);
+        }
+        
+        .package-cta {
+            margin-top: auto;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: var(--primary-green);
+            color: white;
+            padding: 14px 32px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            text-align: center;
+        }
+        
+        .btn:hover {
+            background: var(--dark-green);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+        }
+        
+        .btn-secondary {
+            background: var(--primary-blue);
+            margin-top: 15px;
+        }
+        
+        .btn-secondary:hover {
+            background: var(--dark-blue);
+        }
+        
+        /* Features Comparison */
+        .features-comparison {
+            background: var(--white);
+            padding: 80px 0;
+        }
+        
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .comparison-table th, .comparison-table td {
+            padding: 20px;
+            text-align: center;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        
+        .comparison-table th {
+            background: var(--primary-blue);
+            color: white;
+            font-weight: 600;
+        }
+        
+        .comparison-table tr:nth-child(even) {
+            background: var(--light-gray);
+        }
+        
+        .comparison-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .feature-name {
+            text-align: left;
+            font-weight: 600;
+            color: var(--dark-blue);
+            background: var(--light-blue);
+        }
+        
+        .check-icon {
+            color: var(--primary-green);
+            font-size: 20px;
+        }
+        
+        /* CTA Section */
+        .cta {
+            background: linear-gradient(135deg, var(--dark-blue), var(--primary-blue));
+            padding: 80px 0;
+            color: white;
+            text-align: center;
+        }
+        
+        .cta-content {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .cta h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .cta p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+        
+        .cta-btns {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        /* FAQ Section */
+        .faq {
+            padding: 80px 0;
+            background: linear-gradient(to right, var(--light-blue), var(--light-green));
+        }
+        
+        .faq-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .faq-card {
+            background: var(--white);
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        }
+        
+        .faq-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+            color: var(--dark-blue);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .faq-card h3 i {
+            color: var(--primary-green);
+            font-size: 24px;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--dark-blue);
+            color: white;
+            padding: 60px 0 30px;
+        }
+        
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 38px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-col h4 {
+            font-size: 1.3rem;
+            margin-bottom: 25px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .footer-col h4::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background: var(--primary-green);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 15px;
+        }
+        
+        .footer-links a {
+            color: #cbd5e1;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: var(--primary-green);
+            padding-left: 5px;
+        }
+        
+        .footer-social {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-link {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 18px;
+            transition: all 0.3s ease;
+        }
+        
+        .social-link:hover {
+            background: var(--primary-green);
+            transform: translateY(-5px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #cbd5e1;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .hero-content h1 {
+                font-size: 2.8rem;
+            }
+            
+            .comparison-table {
+                font-size: 14px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            nav {
+                position: fixed;
+                top: 85px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 85px);
+                background: var(--dark-blue);
+                transition: all 0.4s ease;
+                padding: 40px 0;
+            }
+            
+            nav.active {
+                left: 0;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+                gap: 30px;
+            }
+            
+            .hero-content h1 {
+                font-size: 2.4rem;
+            }
+            
+            .package-card.popular {
+                transform: scale(1);
+            }
+            
+            .cta-btns {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .comparison-table {
+                display: block;
+                overflow-x: auto;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .packages-hero {
+                min-height: auto;
+            }
+            
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .packages-section, .features-comparison, .faq, .cta {
+                padding: 60px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <!--<a href="index.html" class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <div class="logo-text">
+                    <span class="business">Business</span><span class="mate">Mate</span> <span class="solution">Solution</span>
+                </div>
+            </a>-->
+            <a href="#" class="logo">
+                <!--<div class="logo-icon">-->
+                <!--<i class="fas fa-shield-alt"></i>-->
+                <div class="logo">
+                    <img src="logo.png" alt="" style="border-radius: 10px; background-color: white; width: 50px; height: 40px; padding-left: 5px; ">
+                </div>
+                <!--</div>-->
+                <div class="logo-text">
+                    <span class="business">Business</span><span class="mate">Mate</span> <span class="solution">Solution</span>
+                </div>
+            </a>
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+            <nav>
+                <ul>
+                    <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="about.html"><i class="fas fa-info-circle"></i> About</a></li>
+                    <li><a href="products.html"><i class="fas fa-camera"></i> Products</a></li>
+                    <li><a href="packages.html" class="active"><i class="fas fa-box"></i> Packages</a></li>
+                    <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="packages-hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Security Packages</h1>
+                <p>Comprehensive security solutions tailored to your specific needs</p>
+                <ul class="breadcrumb">
+                    <li><a href="index.html">Home</a></li>
+                    <li>Packages</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Packages Section -->
+    <section class="packages-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Our Security Packages</h2>
+                <p class="section-subtitle">Choose the perfect security solution for your home or business</p>
+            </div>
+
+            <div class="packages-grid">
+                <!-- Basic Package -->
+                <div class="package-card">
+                    <h3>Essential Security</h3>
+                    <div class="package-subtitle">For Small Homes & Apartments</div>
+                    <div class="package-price">$499<span>/setup</span></div>
+                    <ul class="package-features">
+                        <li>2 HD Security Cameras</li>
+                        <li>Motion Detection</li>
+                        <li>Mobile App Access</li>
+                        <li>24/7 Cloud Recording (7 days)</li>
+                        <li>Basic Alarm System</li>
+                        <li>1 Year Warranty</li>
+                    </ul>
+                    <div class="package-cta">
+                        <a href="#" class="btn">Get Started</a>
+                        <a href="#" class="btn btn-secondary">View Details</a>
+                    </div>
+                </div>
+
+                <!-- Popular Package -->
+                <div class="package-card popular">
+                    <div class="popular-tag">MOST POPULAR</div>
+                    <h3>Business Protection</h3>
+                    <div class="package-subtitle">For Small to Medium Businesses</div>
+                    <div class="package-price">$1,299<span>/setup</span></div>
+                    <ul class="package-features">
+                        <li>4 HD Security Cameras</li>
+                        <li>Night Vision & Motion Tracking</li>
+                        <li>Remote Access & Mobile Alerts</li>
+                        <li>30-Day Cloud Storage</li>
+                        <li>Advanced Alarm System</li>
+                        <li>Access Control for 1 Entry</li>
+                        <li>24/7 Monitoring Support</li>
+                        <li>3 Year Warranty</li>
+                    </ul>
+                    <div class="package-cta">
+                        <a href="#" class="btn">Get Started</a>
+                        <a href="#" class="btn btn-secondary">View Details</a>
+                    </div>
+                </div>
+
+                <!-- Premium Package -->
+                <div class="package-card">
+                    <h3>Enterprise Security</h3>
+                    <div class="package-subtitle">For Large Businesses & Facilities</div>
+                    <div class="package-price">$2,999<span>/setup</span></div>
+                    <ul class="package-features">
+                        <li>8+ HD Security Cameras</li>
+                        <li>AI-Powered Analytics</li>
+                        <li>Multi-User Access Control</li>
+                        <li>90-Day Cloud Storage</li>
+                        <li>Advanced Intrusion Detection</li>
+                        <li>Access Control for 3 Entries</li>
+                        <li>24/7 Premium Support</li>
+                        <li>Onsite Security Assessment</li>
+                        <li>5 Year Warranty</li>
+                    </ul>
+                    <div class="package-cta">
+                        <a href="#" class="btn">Get Started</a>
+                        <a href="#" class="btn btn-secondary">View Details</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Comparison -->
+    <section class="features-comparison">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Package Features Comparison</h2>
+                <p class="section-subtitle">See how our packages compare to find the right solution for you</p>
+            </div>
+
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Feature</th>
+                        <th>Essential Security</th>
+                        <th>Business Protection</th>
+                        <th>Enterprise Security</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="feature-name">Security Cameras</td>
+                        <td>2 HD Cameras</td>
+                        <td>4 HD Cameras</td>
+                        <td>8+ HD Cameras</td>
+                    </tr>
+                    <tr>
+                        <td class="feature-name">Video Storage</td>
+                        <td>7 Days Cloud</td>
+                        <td>30 Days Cloud</td>
+                        <td>90 Days Cloud</td>
+                    </tr>
+                    <tr>
+                        <td class="feature-name">Mobile Access</td>
+                        <td><i class="fas fa-check check-icon"></i></td>
+                        <td><i class="fas fa-check check-icon"></i></td>
+                        <td><i class="fas fa-check check-icon"></i></td>
+                    </tr>
+                    <tr>
+                        <td class="feature-name">Night Vision</td>
+                        <td><i class="fas fa-check check-icon"></i></td>
+                        <td><i class="fas fa-check check-icon"></i></td>
+                        <td><i class="fas fa-check check-icon"></i></td>
+                    </tr>
+                    <tr>
+                        <td class="feature-name">Motion Detection</td>
+                        <td>Basic</td>
+                        <td>Advanced with AI</td>
+                        <td>Advanced with AI Analytics</td>
+                    </tr>
+                    <tr>
+                        <td class="feature-name">Alarm System</td>
+                        <td>Basic</td>
+                        <td>Advanced</td>
+                        <td>Premium with Intrusion Detection</td>
+                    </tr>
+                    <tr>
+                        <td class="feature-name">Access Control</td>
+                        <td>-</td>
+                        <td>1 Entry Point</td>
+                        <td>3 Entry Points</td>
+                    </tr>
+                    <tr>
+                        <td class="feature-name">Support</td>
+                        <td>Business Hours</td>
+                        <td>24/7 Monitoring</td>
+                        <td>24/7 Premium Support</td>
+                    </tr>
+                    <tr>
+                        <td class="feature-name">Warranty</td>
+                        <td>1 Year</td>
+                        <td>3 Years</td>
+                        <td>5 Years</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Frequently Asked Questions</h2>
+                <p class="section-subtitle">Find answers to common questions about our security packages</p>
+            </div>
+
+            <div class="faq-grid">
+                <div class="faq-card">
+                    <h3><i class="fas fa-question-circle"></i> How long does installation take?</h3>
+                    <p>Installation time varies based on the package and property size. For Essential Security, installation typically takes 3-4 hours. Business Protection takes 6-8 hours, and Enterprise Security installations usually require 1-2 days.</p>
+                </div>
+
+                <div class="faq-card">
+                    <h3><i class="fas fa-question-circle"></i> Can I upgrade my package later?</h3>
+                    <p>Yes, you can upgrade your security package at any time. We offer flexible upgrade paths and will credit your original package cost toward your upgrade. Contact our support team to discuss upgrade options.</p>
+                </div>
+
+                <div class="faq-card">
+                    <h3><i class="fas fa-question-circle"></i> Do you offer monitoring services?</h3>
+                    <p>Yes, our Business Protection and Enterprise Security packages include 24/7 professional monitoring. Our monitoring center is UL-certified and staffed with trained security professionals who can dispatch emergency services when needed.</p>
+                </div>
+
+                <div class="faq-card">
+                    <h3><i class="fas fa-question-circle"></i> What payment options do you accept?</h3>
+                    <p>We accept all major credit cards, bank transfers, and offer financing options with 0% interest for qualified customers. We also accept payment through PayPal and other digital payment methods.</p>
+                </div>
+
+                <div class="faq-card">
+                    <h3><i class="fas fa-question-circle"></i> Is professional installation included?</h3>
+                    <p>Yes, all our packages include professional installation by certified technicians. We handle everything from system design to installation and configuration, ensuring optimal performance of your security system.</p>
+                </div>
+
+                <div class="faq-card">
+                    <h3><i class="fas fa-question-circle"></i> What is your cancellation policy?</h3>
+                    <p>You can cancel within 30 days for a full refund. After 30 days, we offer pro-rated refunds based on unused service time. Monitoring services can be canceled with 30 days notice. Please review our terms for full details.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Ready to Secure Your Property?</h2>
+                <p>Contact us today for a free security assessment and consultation. Our experts will help you choose the perfect package for your needs.</p>
+                <div class="cta-btns">
+                    <a href="contact.html" class="btn">Get Free Consultation</a>
+                    <a href="tel:+15551234567" class="btn btn-secondary">Call Us Now</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-col">
+                    <a href="#" class="logo">
+                        <!--<div class="logo-icon">-->
+                        <!--<i class="fas fa-shield-alt"></i>-->
+                        <div class="logo">
+                            <img src="logo.png" alt="" style="border-radius: 10px; background-color: white; width: 50px; height: 40px; padding-left: 5px; ">
+                        </div>
+                        <!--</div>-->
+                        <div style=" color: white; font-size: 18px; font-weight: 700;">
+                            <span class="business">Business</span><span class="mate">Mate</span> <span style="color: #10b981">Solution</span>
+                        </div>
+                    </a>
+                    <!--<a href="#" class="logo">
+                        <div class="logo-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <div class="logo-text">
+                            <span class="business">Business</span><span class="mate">Mate</span> <span class="solution">Solution</span>
+                        </div>
+                    </a>-->
+                    <p>Providing advanced security solutions for homes and businesses since 2008. Trusted by thousands of customers nationwide.</p>
+                    <div class="footer-social">
+                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="About.html">About Us</a></li>
+                        <li><a href="Products.html">Products</a></li>
+                        <li><a href="Packages.html">Packages</a></li>
+                        <li><a href="Contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Our Services</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">CCTV Installation</a></li>
+                        <li><a href="#">Access Control</a></li>
+                        <li><a href="#">Alarm Systems</a></li>
+                        <li><a href="#">Fire Safety</a></li>
+                        <li><a href="#">Network Security</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Contact Us</h4>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-map-marker-alt"></i> 123 Security Street, City</li>
+                        <li><i class="fas fa-phone"></i> +1 (555) 123-4567</li>
+                        <li><i class="fas fa-envelope"></i> businessmatesolution@gmail.com</li>
+                        <li><i class="fas fa-clock"></i> Mon-Fri: 9AM - 6PM</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 BusinessMate Solution. All rights reserved. Designed with <i class="fas fa-heart" style="color: #ff6b6b;"></i> for your security.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const nav = document.querySelector('nav');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            nav.classList.toggle('active');
+        });
+
+        // Package Card Animation
+        const packageCards = document.querySelectorAll('.package-card');
+
+        packageCards.forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'translateY(-10px)';
+                card.style.boxShadow = '0 15px 40px rgba(0, 0, 0, 0.1)';
+            });
+
+            card.addEventListener('mouseleave', () => {
+                if (!card.classList.contains('popular')) {
+                    card.style.transform = 'translateY(0)';
+                } else {
+                    card.style.transform = 'scale(1.03)';
+                }
+                card.style.boxShadow = '0 10px 30px rgba(0, 0, 0, 0.05)';
+            });
+        });
+
+        // FAQ Toggle (for future expansion)
+        const faqCards = document.querySelectorAll('.faq-card');
+
+        faqCards.forEach(card => {
+            card.addEventListener('click', () => {
+                // In a complete implementation, this would toggle the answer
+            });
+        });
+    </script>
+</body>
+</html>
